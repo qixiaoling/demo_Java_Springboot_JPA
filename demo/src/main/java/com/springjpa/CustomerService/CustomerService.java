@@ -25,8 +25,12 @@ public class CustomerService {
                 .forEach(customers::add);
         return customers;
     }
-    public Optional<Customer> getCustomerById(Long id){
-        return repository.findById(id);
+    public Customer getCustomerById(Long id){
+        Optional<Customer> possibleCustomer=repository.findById(id);
+        if(possibleCustomer.isPresent()) {
+            return possibleCustomer.get();
+        }
+        return new Customer(666L, "Nick", "Stuivenberg");
     }
     public void addCustomer (Customer customer){
         repository.save(customer);

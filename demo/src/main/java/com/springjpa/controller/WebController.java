@@ -16,14 +16,18 @@ public class WebController {
     CustomerService customerService;
 
 public WebController(CustomerService customerService){
+
     this.customerService=customerService;
 }
+
     @RequestMapping(method=RequestMethod.GET, value="/customers")
     public List<Customer> getAllCustomer(){
-        return customerService.getAllCustomer();
+        List<Customer> customers=customerService.getAllCustomer();
+    return customers;
     }
+
     @RequestMapping(method= RequestMethod.GET, value="/customers/{id}")
-    public Optional<Customer> getCustomerById(@PathVariable Long id){
+    public Customer getCustomerById(@PathVariable Long id){
         return customerService.getCustomerById(id);
     }
     @RequestMapping(method = RequestMethod.POST, value="/customers")
@@ -31,7 +35,7 @@ public WebController(CustomerService customerService){
         customerService.addCustomer(customer);
         return "Done";
     }
-    @RequestMapping(method=RequestMethod.PUT, value="//customers/{id}")
+    @RequestMapping(method=RequestMethod.PUT, value="/customers/{id}")
     public void upDateCustomer(@PathVariable Long id, @RequestBody Customer customer){
         customerService.updateCustomer(id, customer);
     }
