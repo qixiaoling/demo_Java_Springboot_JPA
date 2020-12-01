@@ -22,7 +22,7 @@ public WebController(CustomerService customerService){
 
     @RequestMapping(method=RequestMethod.GET, value="/customers")
     public List<Customer> getAllCustomer(){
-        List<Customer> customers=customerService.getAllCustomer();
+        List<Customer> customers = customerService.getAllCustomer();
     return customers;
     }
 
@@ -30,6 +30,7 @@ public WebController(CustomerService customerService){
     public Customer getCustomerById(@PathVariable Long id){
         return customerService.getCustomerById(id);
     }
+
     @RequestMapping(method = RequestMethod.POST, value="/customers")
     public String addCustomer(@RequestBody Customer customer){
         customerService.addCustomer(customer);
